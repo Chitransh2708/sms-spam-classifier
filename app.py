@@ -1,5 +1,21 @@
 import nltk
-nltk.data.path = ["/opt/render/nltk_data"]
+import os
+
+NLTK_DIR = "/opt/render/nltk_data"
+os.makedirs(NLTK_DIR, exist_ok=True)
+
+nltk.data.path = [NLTK_DIR]
+
+# Safe runtime fallback (runs only if data missing)
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", download_dir=NLTK_DIR)
+
+try:
+    nltk.data.find("tokenizers/punkt_tab")
+except LookupError:
+    nltk.download("punkt_tab", download_dir=NLTK_DIR)
 
 
 import streamlit as st
