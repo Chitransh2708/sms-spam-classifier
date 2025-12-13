@@ -1,3 +1,6 @@
+import nltk
+nltk.data.path.append("/opt/render/nltk_data")
+
 import streamlit as st
 import pickle
 import string
