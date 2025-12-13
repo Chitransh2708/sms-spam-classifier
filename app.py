@@ -6,16 +6,11 @@ os.makedirs(NLTK_DIR, exist_ok=True)
 
 nltk.data.path = [NLTK_DIR]
 
-# Safe runtime fallback (runs only if data missing)
+# ONLY ensure punkt (nothing else)
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
     nltk.download("punkt", download_dir=NLTK_DIR)
-
-try:
-    nltk.data.find("tokenizers/punkt_tab")
-except LookupError:
-    nltk.download("punkt_tab", download_dir=NLTK_DIR)
 
 
 import streamlit as st
